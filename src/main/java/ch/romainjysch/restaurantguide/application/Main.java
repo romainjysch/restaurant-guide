@@ -1,23 +1,22 @@
 package ch.romainjysch.restaurantguide.application;
 
-import ch.romainjysch.restaurantguide.business.Restaurant;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import ch.romainjysch.restaurantguide.business.City;
+import ch.romainjysch.restaurantguide.persistence.Database;
+import static ch.romainjysch.restaurantguide.persistence.Database.getEntityManager;
 
 public class Main {
 
-    private static final Logger logger = LoggerFactory.getLogger(Main.class);
-
     public static void main(String[] args) {
-        logger.debug("main#start");
         cli();
-        logger.debug("main#stop");
     }
 
     private static void cli() {
-        Restaurant restaurant = new Restaurant(1, "Romain");
-        System.out.println(restaurant);
+        try (var database = Database.getInstance()) {
+            database.inTransaction(() -> {
+                City city = getEntityManager().find(City.class, 1);
+                System.out.println(city);
+            });
+        }
     }
 
 }
