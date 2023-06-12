@@ -1,11 +1,18 @@
 package ch.romainjysch.restaurantguide.business;
 
+import ch.romainjysch.restaurantguide.utils.RestaurantToRestaurantOverview;
+import lombok.Setter;
+import lombok.Getter;
+
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "RESTAURANTS")
-public class Restaurant {
+public class Restaurant implements IAmRestaurant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_RESTAURANTS")
@@ -22,7 +29,7 @@ public class Restaurant {
     @Column(name="SITE_WEB", length = 100)
     private String website;
 
-    @Transient
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "restaurant")
     private Set<Evaluation> evaluations;
 
     @Embedded
@@ -30,21 +37,48 @@ public class Restaurant {
 
     @ManyToOne
     @JoinColumn(name = "FK_TYPE")
-    private RestaurantType type;
+    private RestaurantType restaurantType;
 
     public Restaurant() {}
 
     @Override
+    public String getName() {
+        return name;
+    }
+
+    public String getZipCode() {
+        return address.getCity().getZipCode();
+    }
+
+    public String getStreet() {
+        return address.getStreet();
+    }
+
+    public String getCityName() {
+        return address.getCity().getCityName();
+    }
+
+    public void addEvaluation(Evaluation evaluation) {
+        this.getEvaluations().add(evaluation);
+        evaluation.setRestaurant(this);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Restaurant that = (Restaurant) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 42;
+    }
+
+    @Override
     public String toString() {
-        return "Restaurant{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", website='" + website + '\'' +
-                ", evaluations=" + evaluations +
-                ", address=" + address +
-                ", type=" + type +
-                '}';
+        return RestaurantToRestaurantOverview.convert(this).toString();
     }
 
 }

@@ -1,8 +1,16 @@
 package ch.romainjysch.restaurantguide.business;
 
+import lombok.Setter;
+import lombok.Getter;
+import lombok.ToString;
+
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
+@Setter
+@Getter
+@ToString
 @Entity
 @Table(name = "TYPES_GASTRONOMIQUES")
 public class RestaurantType {
@@ -19,19 +27,27 @@ public class RestaurantType {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @Transient
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "restaurantType")
     private Set<Restaurant> restaurants;
 
     public RestaurantType() {}
 
+    public void addRestaurant(Restaurant restaurant) {
+        this.getRestaurants().add(restaurant);
+        restaurant.setRestaurantType(this);
+    }
+
     @Override
-    public String toString() {
-        return "RestaurantType{" +
-                "id=" + id +
-                ", label='" + label + '\'' +
-                ", description='" + description + '\'' +
-                ", restaurants=" + restaurants +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RestaurantType that = (RestaurantType) o;
+        return Objects.equals(label, that.label);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(label);
     }
 
 }
