@@ -10,6 +10,7 @@ import java.util.Set;
 
 @Setter
 @Getter
+@ToString
 @Entity
 @Table(name = "VILLES")
 public class City {
@@ -49,14 +50,5 @@ public class City {
         return Objects.hash(zipCode);
     }
 
-    @Override
-    public String toString() {
-        return "City{" +
-                "id=" + id +
-                ", zipCode='" + zipCode + '\'' +
-                ", cityName='" + cityName + '\'' +
-                ", restaurants=" + restaurants +
-                '}';
-    }
 
 }

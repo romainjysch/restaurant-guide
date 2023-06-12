@@ -1,8 +1,8 @@
 package ch.romainjysch.restaurantguide.business;
 
+import ch.romainjysch.restaurantguide.utils.RestaurantToRestaurantOverview;
 import lombok.Setter;
 import lombok.Getter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -10,7 +10,6 @@ import java.util.Set;
 
 @Setter
 @Getter
-@ToString
 @Entity
 @Table(name = "RESTAURANTS")
 public class Restaurant implements IAmRestaurant {
@@ -75,6 +74,11 @@ public class Restaurant implements IAmRestaurant {
     @Override
     public int hashCode() {
         return 42;
+    }
+
+    @Override
+    public String toString() {
+        return RestaurantToRestaurantOverview.convert(this).toString();
     }
 
 }

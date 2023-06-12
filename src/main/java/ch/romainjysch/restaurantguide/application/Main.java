@@ -15,13 +15,13 @@ public class Main {
     private static void cli() {
         try (var database = Database.getInstance()) {
             database.inTransaction(() -> {
-                City city = getEntityManager().find(City.class, 1);
-                System.out.println(city);
-            });
-            database.inTransaction(() -> {
                 Restaurant restaurant = getEntityManager().find(Restaurant.class, 1);
                 RestaurantOverview restaurantOverview = RestaurantToRestaurantOverview.convert(restaurant);
                 System.out.println(restaurantOverview);
+            });
+            database.inTransaction(() -> {
+                City city = getEntityManager().find(City.class, 1);
+                System.out.println(city);
             });
             database.inTransaction(() -> {
                 RestaurantType restaurantType = getEntityManager().find(RestaurantType.class, 1);
