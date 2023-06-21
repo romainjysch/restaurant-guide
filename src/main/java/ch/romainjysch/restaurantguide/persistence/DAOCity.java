@@ -4,15 +4,15 @@ import ch.romainjysch.restaurantguide.business.City;
 
 import static ch.romainjysch.restaurantguide.persistence.Database.getEntityManager;
 
-public class CityDAO {
+public class DAOCity {
 
-    private static CityDAO instance;
+    private static DAOCity instance;
 
-    private CityDAO() {}
+    private DAOCity() {}
 
-    public static CityDAO getInstance() {
+    public static DAOCity getInstance() {
         if (instance == null) {
-            instance = new CityDAO();
+            instance = new DAOCity();
         }
         return instance;
     }
