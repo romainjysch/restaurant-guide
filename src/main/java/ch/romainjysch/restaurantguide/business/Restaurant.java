@@ -1,6 +1,6 @@
 package ch.romainjysch.restaurantguide.business;
 
-import ch.romainjysch.restaurantguide.utils.RestaurantToRestaurantOverview;
+import ch.romainjysch.restaurantguide.utils.RestaurantToRestaurantDTO;
 import lombok.Setter;
 import lombok.Getter;
 
@@ -78,7 +78,7 @@ public class Restaurant implements IAmRestaurant {
 
     @Override
     public String toString() {
-        return RestaurantToRestaurantOverview.convert(this).toString();
+        return RestaurantToRestaurantDTO.convert(this).toString();
     }
 
 }

@@ -1,12 +1,12 @@
 package ch.romainjysch.restaurantguide.utils;
 
 import ch.romainjysch.restaurantguide.business.Restaurant;
-import ch.romainjysch.restaurantguide.business.RestaurantOverview;
+import ch.romainjysch.restaurantguide.business.RestaurantDTO;
 
-public class RestaurantToRestaurantOverview {
+public class RestaurantToRestaurantDTO {
 
-    public static RestaurantOverview convert(Restaurant restaurant) {
-        return new RestaurantOverview(
+    public static RestaurantDTO convert(Restaurant restaurant) {
+        return new RestaurantDTO(
                 restaurant.getId(),
                 restaurant.getName(),
                 restaurant.getStreet(),
