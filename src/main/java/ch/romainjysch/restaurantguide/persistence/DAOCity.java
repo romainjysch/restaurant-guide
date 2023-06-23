@@ -11,9 +11,8 @@ public class DAOCity {
     private DAOCity() {}
 
     public static DAOCity getInstance() {
-        if (instance == null) {
+        if (instance == null)
             instance = new DAOCity();
-        }
         return instance;
     }
 

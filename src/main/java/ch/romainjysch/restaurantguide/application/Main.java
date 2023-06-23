@@ -1,10 +1,9 @@
 package ch.romainjysch.restaurantguide.application;
 
+import ch.romainjysch.restaurantguide.persistence.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ch.romainjysch.restaurantguide.persistence.DAOCity;
-import ch.romainjysch.restaurantguide.persistence.Database;
 import ch.romainjysch.restaurantguide.service.RestaurantService;
 
 public class Main {
@@ -20,8 +19,15 @@ public class Main {
         try (var database = Database.getInstance()) {
             RestaurantService restaurantService = RestaurantService.getInstance(
                     database,
-                    DAOCity.getInstance());
+                    DAOBasicEvaluation.getInstance(),
+                    DAOCity.getInstance(),
+                    DAOCompleteEvaluation.getInstance(),
+                    DAOEvaluationCriteria.getInstance(),
+                    DAOGrade.getInstance(),
+                    DAORestaurant.getInstance(),
+                    DAORestaurantType.getInstance());
             System.out.println(restaurantService.researchCityById(1));
+            System.out.println(restaurantService.researchRestaurantById(1));
         }
         logger.info("Main # CLI Close");
     }
