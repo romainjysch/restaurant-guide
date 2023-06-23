@@ -1,5 +1,9 @@
 package ch.romainjysch.restaurantguide.persistence;
 
+import ch.romainjysch.restaurantguide.business.CompleteEvaluation;
+
+import static ch.romainjysch.restaurantguide.persistence.Database.getEntityManager;
+
 public class DAOCompleteEvaluation {
 
     private static DAOCompleteEvaluation instance;
@@ -10,6 +14,10 @@ public class DAOCompleteEvaluation {
         if (instance == null)
             instance = new DAOCompleteEvaluation();
         return instance;
+    }
+
+    public void insert(CompleteEvaluation completeEvaluation) {
+        getEntityManager().persist(completeEvaluation);
     }
 
 }

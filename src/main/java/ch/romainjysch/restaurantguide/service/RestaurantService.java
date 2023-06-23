@@ -83,33 +83,32 @@ public class RestaurantService {
         throw new UnsupportedOperationException("ToDo");
     }
 
-    public void insertRestaurant(Restaurant restaurant) {
-        throw new UnsupportedOperationException("ToDo");
-    }
-
-    public void insertCity(City city) {
-        throw new UnsupportedOperationException("ToDo");
-    }
-
-    public void insertBasicEvaluation(BasicEvaluation eval) {
-        throw new UnsupportedOperationException("ToDo");
-    }
-
     public Set<EvaluationCriteria> researchAllEvaluationCriteria() {
         throw new UnsupportedOperationException("ToDo");
     }
 
-    public void insertCompleteEvaluation(CompleteEvaluation eval) {
-        throw new UnsupportedOperationException("ToDo");
+    public void insertCity(City city) {
+        database.inTransaction(() -> daoCity.insert(city));
+    }
+
+    public void insertBasicEvaluation(BasicEvaluation basicEvaluation) {
+        database.inTransaction(() -> daoBasicEvaluation.insert(basicEvaluation));
+    }
+
+    public void insertCompleteEvaluation(CompleteEvaluation completeEvaluation) {
+        database.inTransaction(() -> daoCompleteEvaluation.insert(completeEvaluation));
+    }
+
+    public void insertRestaurant(Restaurant restaurant) {
+        database.inTransaction(() -> daoRestaurant.insert(restaurant));
     }
 
     public void updateRestaurant(Restaurant restaurant) {
-        throw new UnsupportedOperationException("ToDo");
+        database.inTransaction(() -> daoRestaurant.update(restaurant));
     }
 
     public void deleteRestaurant(Restaurant restaurant) {
-        throw new UnsupportedOperationException("ToDo");
+        database.inTransaction(() -> daoRestaurant.delete(restaurant));
     }
-
-
+    
 }

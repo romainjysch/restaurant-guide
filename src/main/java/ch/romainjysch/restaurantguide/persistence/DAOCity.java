@@ -16,8 +16,8 @@ public class DAOCity {
         return instance;
     }
 
-    public City findCityById(int id) {
-        return getEntityManager().find(City.class, id);
+    public void insert(City city) {
+        getEntityManager().persist(city);
     }
 
 }
