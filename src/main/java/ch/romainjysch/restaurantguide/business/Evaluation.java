@@ -28,6 +28,14 @@ public abstract class Evaluation {
     @JoinColumn(name = "FK_REST")
     private Restaurant restaurant;
 
+    public Evaluation() {}
+
+    public Evaluation(Integer id, LocalDate visitDate, Restaurant restaurant) {
+        this.id = id;
+        this.visitDate = visitDate;
+        this.restaurant = restaurant;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.time.LocalDate;
 
 @Setter
 @Getter
@@ -23,5 +24,17 @@ public class BasicEvaluation extends Evaluation {
 
     @Column(name = "ADRESSE_IP", nullable = false, length = 100)
     private String ipAddress;
+
+    public BasicEvaluation() {}
+
+    public BasicEvaluation(Integer id,
+                           LocalDate visitDate,
+                           Restaurant restaurant,
+                           boolean likeRestaurant,
+                           String ipAddress) {
+        super(id, visitDate, restaurant);
+        this.likeRestaurant = likeRestaurant;
+        this.ipAddress = ipAddress;
+    }
 
 }

@@ -32,9 +32,19 @@ public class City {
 
     public City() {}
 
+    public City(String zipCode, String cityName) {
+        this.zipCode = zipCode;
+        this.cityName = cityName;
+    }
+
     public void addRestaurant(Restaurant restaurant) {
         this.getRestaurants().add(restaurant);
         restaurant.getAddress().setCity(this);
+    }
+
+    public void removeRestaurant(Restaurant restaurant) {
+        this.restaurants.remove(restaurant);
+        restaurant.getAddress().setCity(null);
     }
 
     @Override

@@ -1,10 +1,11 @@
 package ch.romainjysch.restaurantguide.business;
 
-import ch.romainjysch.restaurantguide.utils.RestaurantToRestaurantDTO;
+import ch.romainjysch.restaurantguide.utils.RestaurantToRestaurantOverview;
 import lombok.Setter;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -40,6 +41,17 @@ public class Restaurant implements IAmRestaurant {
     private RestaurantType restaurantType;
 
     public Restaurant() {}
+
+    public Restaurant(Integer id, String name, String description, String website, String street,
+                      City city, RestaurantType restaurantType) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.website = website;
+        this.evaluations = new HashSet<>();
+        this.address = new Localisation(street, city);
+        this.restaurantType = restaurantType;
+    }
 
     @Override
     public String getName() {
@@ -78,7 +90,7 @@ public class Restaurant implements IAmRestaurant {
 
     @Override
     public String toString() {
-        return RestaurantToRestaurantDTO.convert(this).toString();
+        return RestaurantToRestaurantOverview.convert(this).toString();
     }
 
 }

@@ -1,23 +1,22 @@
 package ch.romainjysch.restaurantguide.application;
 
 import ch.romainjysch.restaurantguide.persistence.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import ch.romainjysch.restaurantguide.presentation.CLI;
 import ch.romainjysch.restaurantguide.service.RestaurantService;
 
-public class Main {
+import java.util.Scanner;
 
-    private static final Logger logger = LoggerFactory.getLogger(Database.class);
+public class Main {
 
     public static void main(String[] args) {
         cli();
     }
 
     private static void cli() {
-        logger.info("Main # CLI Start");
         try (var database = Database.getInstance()) {
-            RestaurantService restaurantService = RestaurantService.getInstance(
+            var scanner = new Scanner(System.in);
+            var printStream = System.out;
+            var restaurantService = RestaurantService.getInstance(
                     database,
                     DAOBasicEvaluation.getInstance(),
                     DAOCity.getInstance(),
@@ -26,10 +25,9 @@ public class Main {
                     DAOGrade.getInstance(),
                     DAORestaurant.getInstance(),
                     DAORestaurantType.getInstance());
-            System.out.println(restaurantService.researchCityById(1));
-            System.out.println(restaurantService.researchRestaurantById(1));
+            var cli = new CLI(scanner, printStream, restaurantService);
+            cli.start();
         }
-        logger.info("Main # CLI Close");
     }
 
 }

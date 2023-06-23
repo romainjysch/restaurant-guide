@@ -1,6 +1,10 @@
 package ch.romainjysch.restaurantguide.business;
 
-public record RestaurantDTO(Integer id, String name, String street, String zipCode, String cityName) implements IAmRestaurant {
+public record RestaurantOverview(Integer id, String name, String street, String zipCode, String cityName) implements IAmRestaurant {
+
+    public Integer getId() {
+        return id;
+    }
 
     @Override
     public String getName() {
@@ -24,7 +28,7 @@ public record RestaurantDTO(Integer id, String name, String street, String zipCo
 
     @Override
     public String toString() {
-        return "RestaurantDTO{" +
+        return "RestaurantOverview{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", street='" + street + '\'' +

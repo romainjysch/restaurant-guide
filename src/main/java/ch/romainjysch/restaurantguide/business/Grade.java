@@ -31,6 +31,16 @@ public class Grade {
     @JoinColumn(name = "FK_CRIT")
     private EvaluationCriteria evaluationCriteria;
 
+    public Grade() {}
+
+    public Grade(Integer note, CompleteEvaluation completeEvaluation,
+                 EvaluationCriteria evaluationCriteria) {
+        this.id = id;
+        this.note = note;
+        this.completeEvaluation = completeEvaluation;
+        this.evaluationCriteria = evaluationCriteria;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

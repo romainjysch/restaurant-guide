@@ -1,8 +1,9 @@
 package ch.romainjysch.restaurantguide.service;
 
-import ch.romainjysch.restaurantguide.business.City;
-import ch.romainjysch.restaurantguide.business.Restaurant;
+import ch.romainjysch.restaurantguide.business.*;
 import ch.romainjysch.restaurantguide.persistence.*;
+
+import java.util.Set;
 
 public class RestaurantService {
 
@@ -54,12 +55,61 @@ public class RestaurantService {
         return instance;
     }
 
-    public Restaurant researchRestaurantById(int id) {
-        return database.inTransaction(() -> daoRestaurant.findRestaurantById(id));
+    public Set<RestaurantOverview> researchAllRestaurants() {
+        throw new UnsupportedOperationException("ToDo");
     }
 
-    public City researchCityById(int id) {
-        return database.inTransaction(() -> daoCity.findCityById(id));
+    public Restaurant researchRestaurantById(int restaurantId) {
+        throw new UnsupportedOperationException("ToDo");
     }
+
+    public Set<RestaurantOverview> researchRestaurantsByName(String research) {
+        throw new UnsupportedOperationException("ToDo");
+    }
+
+    public Set<RestaurantOverview> researchRestaurantsByCityName(String research) {
+        throw new UnsupportedOperationException("ToDo");
+    }
+
+    public Set<RestaurantOverview> researchRestaurantsByType(RestaurantType restaurantType) {
+        throw new UnsupportedOperationException("ToDo");
+    }
+
+    public Set<RestaurantType> researchAllRestaurantTypes() {
+        throw new UnsupportedOperationException("ToDo");
+    }
+
+    public Set<City> researchAllCities() {
+        throw new UnsupportedOperationException("ToDo");
+    }
+
+    public void insertRestaurant(Restaurant restaurant) {
+        throw new UnsupportedOperationException("ToDo");
+    }
+
+    public void insertCity(City city) {
+        throw new UnsupportedOperationException("ToDo");
+    }
+
+    public void insertBasicEvaluation(BasicEvaluation eval) {
+        throw new UnsupportedOperationException("ToDo");
+    }
+
+    public Set<EvaluationCriteria> researchAllEvaluationCriteria() {
+        throw new UnsupportedOperationException("ToDo");
+    }
+
+    public void insertCompleteEvaluation(CompleteEvaluation eval) {
+        throw new UnsupportedOperationException("ToDo");
+    }
+
+    public void updateRestaurant(Restaurant restaurant) {
+        throw new UnsupportedOperationException("ToDo");
+    }
+
+    public void deleteRestaurant(Restaurant restaurant) {
+        throw new UnsupportedOperationException("ToDo");
+    }
+
 
 }

@@ -25,6 +25,11 @@ public class Localisation {
 
     public Localisation() {}
 
+    public Localisation(String street, City city) {
+        this.street = street;
+        this.city = city;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
