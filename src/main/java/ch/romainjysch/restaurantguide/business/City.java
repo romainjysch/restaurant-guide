@@ -13,6 +13,7 @@ import java.util.Set;
 @ToString
 @Entity
 @Table(name = "VILLES")
+@NamedQuery(name = "City.researchAll", query = "select c from City c")
 public class City {
 
     @Id

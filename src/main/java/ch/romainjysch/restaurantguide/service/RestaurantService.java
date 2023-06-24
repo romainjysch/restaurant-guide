@@ -13,7 +13,6 @@ public class RestaurantService {
     private final DAOCity daoCity;
     private final DAOCompleteEvaluation daoCompleteEvaluation;
     private final DAOEvaluationCriteria daoEvaluationCriteria;
-    private final DAOGrade daoGrade;
     private final DAORestaurant daoRestaurant;
     private final DAORestaurantType daoRestaurantType;
 
@@ -22,7 +21,6 @@ public class RestaurantService {
                               DAOCity daoCity,
                               DAOCompleteEvaluation daoCompleteEvaluation,
                               DAOEvaluationCriteria daoEvaluationCriteria,
-                              DAOGrade daoGrade,
                               DAORestaurant daoRestaurant,
                               DAORestaurantType daoRestaurantType) {
         this.database = database;
@@ -30,7 +28,6 @@ public class RestaurantService {
         this.daoCity = daoCity;
         this.daoCompleteEvaluation = daoCompleteEvaluation;
         this.daoEvaluationCriteria = daoEvaluationCriteria;
-        this.daoGrade = daoGrade;
         this.daoRestaurant = daoRestaurant;
         this.daoRestaurantType = daoRestaurantType;
     }
@@ -40,7 +37,6 @@ public class RestaurantService {
                                                 DAOCity daoCity,
                                                 DAOCompleteEvaluation daoCompleteEvaluation,
                                                 DAOEvaluationCriteria daoEvaluationCriteria,
-                                                DAOGrade daoGrade,
                                                 DAORestaurant daoRestaurant,
                                                 DAORestaurantType daoRestaurantType) {
         if (instance == null)
@@ -49,42 +45,41 @@ public class RestaurantService {
                     daoCity,
                     daoCompleteEvaluation,
                     daoEvaluationCriteria,
-                    daoGrade,
                     daoRestaurant,
                     daoRestaurantType);
         return instance;
     }
 
     public Set<RestaurantOverview> researchAllRestaurants() {
-        throw new UnsupportedOperationException("ToDo");
+        return database.inTransaction(daoRestaurant::findAll);
     }
 
-    public Restaurant researchRestaurantById(int restaurantId) {
-        throw new UnsupportedOperationException("ToDo");
+    public Restaurant researchRestaurantById(int id) {
+        return database.inTransaction(() -> daoRestaurant.findById(id));
     }
 
-    public Set<RestaurantOverview> researchRestaurantsByName(String research) {
-        throw new UnsupportedOperationException("ToDo");
+    public Set<RestaurantOverview> researchRestaurantsByName(String name) {
+        return database.inTransaction(() -> daoRestaurant.findByName(name));
     }
 
-    public Set<RestaurantOverview> researchRestaurantsByCityName(String research) {
-        throw new UnsupportedOperationException("ToDo");
+    public Set<RestaurantOverview> researchRestaurantsByCityName(String name) {
+        return database.inTransaction(() -> daoRestaurant.findByCityName(name));
     }
 
     public Set<RestaurantOverview> researchRestaurantsByType(RestaurantType restaurantType) {
-        throw new UnsupportedOperationException("ToDo");
+        return database.inTransaction(() -> daoRestaurant.findByRestaurantType(restaurantType));
     }
 
     public Set<RestaurantType> researchAllRestaurantTypes() {
-        throw new UnsupportedOperationException("ToDo");
+        return database.inTransaction(daoRestaurantType::findAll);
     }
 
     public Set<City> researchAllCities() {
-        throw new UnsupportedOperationException("ToDo");
+        return database.inTransaction(daoCity::findAll);
     }
 
     public Set<EvaluationCriteria> researchAllEvaluationCriteria() {
-        throw new UnsupportedOperationException("ToDo");
+        return database.inTransaction(daoEvaluationCriteria::findAll);
     }
 
     public void insertCity(City city) {
@@ -110,5 +105,5 @@ public class RestaurantService {
     public void deleteRestaurant(Restaurant restaurant) {
         database.inTransaction(() -> daoRestaurant.delete(restaurant));
     }
-    
+
 }

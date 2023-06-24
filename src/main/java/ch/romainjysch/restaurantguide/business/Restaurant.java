@@ -1,6 +1,5 @@
 package ch.romainjysch.restaurantguide.business;
 
-import ch.romainjysch.restaurantguide.utils.RestaurantToRestaurantOverview;
 import lombok.Setter;
 import lombok.Getter;
 
@@ -13,6 +12,22 @@ import java.util.Set;
 @Getter
 @Entity
 @Table(name = "RESTAURANTS")
+@NamedQueries({
+        @NamedQuery(name = "Restaurant.researchAll",
+                query = "select r from Restaurant r"),
+        @NamedQuery(name = "Restaurant.researchById",
+                query = "select r from Restaurant r " +
+                        "where r.id = :id"),
+        @NamedQuery(name = "Restaurant.researchByName",
+                query = "select r from Restaurant r " +
+                        "where r.name like :name"),
+        @NamedQuery(name = "Restaurant.researchByCityName",
+                query = "select r from Restaurant r " +
+                        "where r.address.city.cityName = :cityName"),
+        @NamedQuery(name = "Restaurant.researchByRestaurantType",
+                query = "select r from Restaurant r " +
+                        "where r.restaurantType = :restaurantType")
+})
 public class Restaurant implements IAmRestaurant {
 
     @Id
@@ -86,11 +101,6 @@ public class Restaurant implements IAmRestaurant {
     @Override
     public int hashCode() {
         return 42;
-    }
-
-    @Override
-    public String toString() {
-        return RestaurantToRestaurantOverview.convert(this).toString();
     }
 
 }

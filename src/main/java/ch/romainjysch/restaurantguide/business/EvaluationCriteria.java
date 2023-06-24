@@ -12,6 +12,7 @@ import java.util.Objects;
 @ToString
 @Entity
 @Table(name = "CRITERES_EVALUATION")
+@NamedQuery(name = "EvaluationCriteria.researchAll", query = "select ec from EvaluationCriteria ec")
 public class EvaluationCriteria {
 
     @Id

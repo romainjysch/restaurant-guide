@@ -22,7 +22,6 @@ public class Main {
                     DAOCity.getInstance(),
                     DAOCompleteEvaluation.getInstance(),
                     DAOEvaluationCriteria.getInstance(),
-                    DAOGrade.getInstance(),
                     DAORestaurant.getInstance(),
                     DAORestaurantType.getInstance());
             var cli = new CLI(scanner, printStream, restaurantService);

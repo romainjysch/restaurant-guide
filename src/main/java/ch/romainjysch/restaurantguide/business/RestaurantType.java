@@ -13,6 +13,7 @@ import java.util.Set;
 @ToString
 @Entity
 @Table(name = "TYPES_GASTRONOMIQUES")
+@NamedQuery(name = "RestaurantType.researchAll", query = "select rt from RestaurantType rt")
 public class RestaurantType {
 
     @Id
