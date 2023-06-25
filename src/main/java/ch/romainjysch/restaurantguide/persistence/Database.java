@@ -20,9 +20,8 @@ public class Database implements AutoCloseable {
     }
 
     public static Database getInstance() {
-        if (instance == null) {
-            instance = new Database();
-        }
+        if (instance == null)
+                instance = new Database();
         return instance;
     }
 
@@ -38,8 +37,8 @@ public class Database implements AutoCloseable {
             logger.error("Exception : ", e);
             throw new RuntimeException(e);
         } finally {
-            //em.close();
-            //Database.em.remove();
+            em.close();
+            Database.em.remove();
         }
     }
 
@@ -54,8 +53,8 @@ public class Database implements AutoCloseable {
             logger.error("Exception : ", e);
             throw new RuntimeException(e);
         } finally {
-            //em.close();
-            //Database.em.remove();
+            em.close();
+            Database.em.remove();
         }
     }
 

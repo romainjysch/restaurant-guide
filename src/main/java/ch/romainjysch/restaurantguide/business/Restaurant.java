@@ -47,7 +47,7 @@ import java.util.Set;
                         "res.address.city.zipCode, " +
                         "res.address.city.cityName) " +
                         "from Restaurant res " +
-                        "where res.address.city.cityName = :cityName"),
+                        "where res.address.city.cityName like :cityName"),
         @NamedQuery(name = "Restaurant.researchByRestaurantType",
                 query = "select new ch.romainjysch.restaurantguide.business.RestaurantOverview(" +
                         "res.id, " +

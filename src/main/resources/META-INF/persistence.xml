@@ -6,19 +6,12 @@
              version="2.1">
     <persistence-unit name="guideRestoPersistenceUnit">
         <properties>
-            <property name="javax.persistence.jdbc.driver"
-                      value="org.postgresql.Driver"/>
-            <!-- URL de la base de données locale !-->
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>
-            <!-- Votre nom d'utilisateur !-->
             <property name="javax.persistence.jdbc.user" value="romainjysch"/>
-            <!-- Votre mot de passe !-->
             <property name="javax.persistence.jdbc.password" value="romainjysch"/>
-            <!-- Dialect de la base de données à utiliser -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
-            <!-- Logs des requêtes SQL -->
             <property name="hibernate.show_sql" value="true"/>
-            <!-- Activation des statistiques (durée, nombre de requêtes JDBC, cache hits, flushs) -->
             <property name="hibernate.generate_statistics" value="true"/>
         </properties>
     </persistence-unit>
