@@ -20,4 +20,9 @@ public class DAOCompleteEvaluation {
         getEntityManager().persist(completeEvaluation);
     }
 
+    public void delete(CompleteEvaluation completeEvaluation) {
+        CompleteEvaluation merged = getEntityManager().merge(completeEvaluation);
+        getEntityManager().remove(merged);
+    }
+
 }

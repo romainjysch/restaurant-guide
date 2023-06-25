@@ -20,4 +20,9 @@ public class DAOBasicEvaluation {
         getEntityManager().persist(basicEvaluation);
     }
 
+    public void delete(BasicEvaluation basicEvaluation) {
+        BasicEvaluation merged = getEntityManager().merge(basicEvaluation);
+        getEntityManager().remove(merged);
+    }
+
 }

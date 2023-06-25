@@ -103,7 +103,13 @@ public class RestaurantService {
     }
 
     public void deleteRestaurant(Restaurant restaurant) {
-        database.inTransaction(() -> daoRestaurant.delete(restaurant));
+        database.inTransaction(() -> {
+            restaurant.getEvaluations().stream().filter(CompleteEvaluation.class::isInstance)
+                    .map(CompleteEvaluation.class::cast).forEach(daoCompleteEvaluation::delete);
+            restaurant.getEvaluations().stream().filter(BasicEvaluation.class::isInstance)
+                    .map(BasicEvaluation.class::cast).forEach(daoBasicEvaluation::delete);
+            daoRestaurant.delete(restaurant);
+        });
     }
 
 }

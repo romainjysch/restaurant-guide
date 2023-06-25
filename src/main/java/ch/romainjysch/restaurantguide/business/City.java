@@ -39,7 +39,7 @@ public class City {
     }
 
     public void addRestaurant(Restaurant restaurant) {
-        this.getRestaurants().add(restaurant);
+        this.restaurants.add(restaurant);
         restaurant.getAddress().setCity(this);
     }
 

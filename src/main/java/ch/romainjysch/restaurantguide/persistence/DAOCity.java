@@ -20,10 +20,11 @@ public class DAOCity {
     }
 
     public Set<City> findAll() {
-        return getEntityManager()
-                .createNamedQuery("City.researchAll", City.class)
+        Set<City> cities = getEntityManager().createNamedQuery("City.researchAll", City.class)
                 .getResultStream()
                 .collect(toUnmodifiableSet());
+        cities.forEach(c -> c.getRestaurants().size());
+        return cities;
     }
 
     public void insert(City city) {

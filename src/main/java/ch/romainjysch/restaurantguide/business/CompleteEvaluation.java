@@ -17,7 +17,6 @@ import java.util.Set;
 public class CompleteEvaluation extends Evaluation {
 
     @Column(name = "COMMENTAIRE", nullable = false)
-    @Lob
     private String comment;
 
     @Column(name = "NOM_UTILISATEUR", nullable = false, length = 100)

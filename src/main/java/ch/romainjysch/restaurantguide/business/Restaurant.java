@@ -14,19 +14,49 @@ import java.util.Set;
 @Table(name = "RESTAURANTS")
 @NamedQueries({
         @NamedQuery(name = "Restaurant.researchAll",
-                query = "select r from Restaurant r"),
+                query = "select new ch.romainjysch.restaurantguide.business.RestaurantOverview(" +
+                        "res.id, " +
+                        "res.name, " +
+                        "res.address.street, " +
+                        "res.address.city.zipCode, " +
+                        "res.address.city.cityName) " +
+                        "from Restaurant res"),
         @NamedQuery(name = "Restaurant.researchById",
-                query = "select r from Restaurant r " +
-                        "where r.id = :id"),
+                query = "select res " +
+                        "from Restaurant res " +
+                        "left join fetch res.restaurantType typ " +
+                        "left join fetch res.address.city cit " +
+                        "left join fetch res.evaluations eva " +
+                        "left join fetch eva.grades gra " +
+                        "left join fetch gra.evaluationCriteria cri " +
+                        "where res.id = :id"),
         @NamedQuery(name = "Restaurant.researchByName",
-                query = "select r from Restaurant r " +
-                        "where r.name like :name"),
+                query = "select new ch.romainjysch.restaurantguide.business.RestaurantOverview(" +
+                        "res.id, " +
+                        "res.name, " +
+                        "res.address.street, " +
+                        "res.address.city.zipCode, " +
+                        "res.address.city.cityName) " +
+                        "from Restaurant res " +
+                        "where res.name like :name"),
         @NamedQuery(name = "Restaurant.researchByCityName",
-                query = "select r from Restaurant r " +
-                        "where r.address.city.cityName = :cityName"),
+                query = "select new ch.romainjysch.restaurantguide.business.RestaurantOverview(" +
+                        "res.id, " +
+                        "res.name, " +
+                        "res.address.street, " +
+                        "res.address.city.zipCode, " +
+                        "res.address.city.cityName) " +
+                        "from Restaurant res " +
+                        "where res.address.city.cityName = :cityName"),
         @NamedQuery(name = "Restaurant.researchByRestaurantType",
-                query = "select r from Restaurant r " +
-                        "where r.restaurantType = :restaurantType")
+                query = "select new ch.romainjysch.restaurantguide.business.RestaurantOverview(" +
+                        "res.id, " +
+                        "res.name, " +
+                        "res.address.street, " +
+                        "res.address.city.zipCode, " +
+                        "res.address.city.cityName) " +
+                        "from Restaurant res " +
+                        "where res.restaurantType = :restaurantType")
 })
 public class Restaurant implements IAmRestaurant {
 
