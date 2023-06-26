@@ -2,7 +2,6 @@ package ch.romainjysch.restaurantguide.business;
 
 import lombok.Setter;
 import lombok.Getter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -11,7 +10,6 @@ import java.util.Set;
 
 @Setter
 @Getter
-@ToString
 @Entity
 @Table(name = "COMMENTAIRES")
 public class CompleteEvaluation extends Evaluation {

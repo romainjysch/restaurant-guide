@@ -2,14 +2,12 @@ package ch.romainjysch.restaurantguide.business;
 
 import lombok.Setter;
 import lombok.Getter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Setter
 @Getter
-@ToString
 @Entity
 @Table(name = "NOTES")
 public class Grade {

@@ -3,7 +3,6 @@ package ch.romainjysch.restaurantguide.business;
 import ch.romainjysch.restaurantguide.persistence.BooleanConverter;
 import lombok.Setter;
 import lombok.Getter;
-import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
@@ -13,7 +12,6 @@ import java.time.LocalDate;
 
 @Setter
 @Getter
-@ToString
 @Entity
 @Table(name = "LIKES")
 public class BasicEvaluation extends Evaluation {

@@ -2,7 +2,6 @@ package ch.romainjysch.restaurantguide.business;
 
 import lombok.Setter;
 import lombok.Getter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -10,7 +9,6 @@ import java.util.Set;
 
 @Setter
 @Getter
-@ToString
 @Entity
 @Table(name = "TYPES_GASTRONOMIQUES")
 @NamedQuery(name = "RestaurantType.researchAll", query = "select rt from RestaurantType rt")

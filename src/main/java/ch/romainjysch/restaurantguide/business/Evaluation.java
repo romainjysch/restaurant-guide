@@ -2,7 +2,6 @@ package ch.romainjysch.restaurantguide.business;
 
 import lombok.Setter;
 import lombok.Getter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -10,7 +9,6 @@ import java.util.Objects;
 
 @Setter
 @Getter
-@ToString
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Evaluation {

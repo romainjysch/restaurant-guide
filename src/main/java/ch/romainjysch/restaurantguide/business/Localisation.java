@@ -2,7 +2,6 @@ package ch.romainjysch.restaurantguide.business;
 
 import lombok.Setter;
 import lombok.Getter;
-import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -12,7 +11,6 @@ import java.util.Objects;
 
 @Setter
 @Getter
-@ToString
 @Embeddable
 public class Localisation {
 

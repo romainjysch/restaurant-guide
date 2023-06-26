@@ -2,7 +2,6 @@ package ch.romainjysch.restaurantguide.business;
 
 import lombok.Setter;
 import lombok.Getter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -11,7 +10,6 @@ import java.util.Set;
 
 @Setter
 @Getter
-@ToString
 @Entity
 @Table(name = "VILLES")
 @NamedQuery(name = "City.researchAll", query = "select c from City c")
