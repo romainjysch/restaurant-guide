@@ -22,7 +22,7 @@ public class City {
     @Column(name="nom_ville", nullable = false, length = 100)
     private String cityName;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "address.city", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "address.city")
     private Set<Restaurant> restaurants;
 
     public City() {}

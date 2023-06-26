@@ -9,13 +9,13 @@ import java.util.Set;
 @Table(name = "RESTAURANTS")
 @NamedQueries({
         @NamedQuery(name = "Restaurant.researchAll",
-                query = "select new ch.romainjysch.restaurantguide.business.RestaurantOverview(" +
-                        "res.id, " +
-                        "res.name, " +
-                        "res.address.street, " +
-                        "res.address.city.zipCode, " +
-                        "res.address.city.cityName) " +
-                        "from Restaurant res"),
+                query = "select res " +
+                        "from Restaurant res " +
+                        "left join fetch res.restaurantType typ " +
+                        "left join fetch res.address.city cit " +
+                        "left join fetch res.evaluations eva " +
+                        "left join fetch eva.grades gra " +
+                        "left join fetch gra.evaluationCriteria cri "),
         @NamedQuery(name = "Restaurant.researchById",
                 query = "select res " +
                         "from Restaurant res " +
@@ -26,31 +26,31 @@ import java.util.Set;
                         "left join fetch gra.evaluationCriteria cri " +
                         "where res.id = :id"),
         @NamedQuery(name = "Restaurant.researchByName",
-                query = "select new ch.romainjysch.restaurantguide.business.RestaurantOverview(" +
-                        "res.id, " +
-                        "res.name, " +
-                        "res.address.street, " +
-                        "res.address.city.zipCode, " +
-                        "res.address.city.cityName) " +
+                query = "select res " +
                         "from Restaurant res " +
+                        "left join fetch res.restaurantType typ " +
+                        "left join fetch res.address.city cit " +
+                        "left join fetch res.evaluations eva " +
+                        "left join fetch eva.grades gra " +
+                        "left join fetch gra.evaluationCriteria cri " +
                         "where res.name like :name"),
         @NamedQuery(name = "Restaurant.researchByCityName",
-                query = "select new ch.romainjysch.restaurantguide.business.RestaurantOverview(" +
-                        "res.id, " +
-                        "res.name, " +
-                        "res.address.street, " +
-                        "res.address.city.zipCode, " +
-                        "res.address.city.cityName) " +
+                query = "select res " +
                         "from Restaurant res " +
+                        "left join fetch res.restaurantType typ " +
+                        "left join fetch res.address.city cit " +
+                        "left join fetch res.evaluations eva " +
+                        "left join fetch eva.grades gra " +
+                        "left join fetch gra.evaluationCriteria cri " +
                         "where res.address.city.cityName like :cityName"),
         @NamedQuery(name = "Restaurant.researchByRestaurantType",
-                query = "select new ch.romainjysch.restaurantguide.business.RestaurantOverview(" +
-                        "res.id, " +
-                        "res.name, " +
-                        "res.address.street, " +
-                        "res.address.city.zipCode, " +
-                        "res.address.city.cityName) " +
+                query = "select res " +
                         "from Restaurant res " +
+                        "left join fetch res.restaurantType typ " +
+                        "left join fetch res.address.city cit " +
+                        "left join fetch res.evaluations eva " +
+                        "left join fetch eva.grades gra " +
+                        "left join fetch gra.evaluationCriteria cri " +
                         "where res.restaurantType = :restaurantType")
 })
 public class Restaurant implements IAmRestaurant {
@@ -71,7 +71,7 @@ public class Restaurant implements IAmRestaurant {
     @Column(name="site_web", length = 100)
     private String website;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "restaurant", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "restaurant")
     private Set<Evaluation> evaluations;
 
     @Embedded

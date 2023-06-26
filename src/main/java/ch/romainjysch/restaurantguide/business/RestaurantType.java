@@ -22,7 +22,7 @@ public class RestaurantType {
     @Lob
     private String description;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "restaurantType", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "restaurantType")
     private Set<Restaurant> restaurants;
 
     public RestaurantType() {}
