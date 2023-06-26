@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -28,7 +29,7 @@ public class City {
     @Column(name="NOM_VILLE")
     private String cityName;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "address.city")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "address.city", fetch = FetchType.EAGER)
     private Set<Restaurant> restaurants;
 
     public City() {}
@@ -36,6 +37,7 @@ public class City {
     public City(String zipCode, String cityName) {
         this.zipCode = zipCode;
         this.cityName = cityName;
+        this.restaurants = new HashSet<>();
     }
 
     public void addRestaurant(Restaurant restaurant) {

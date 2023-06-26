@@ -16,14 +16,14 @@ public class Main {
         try (var database = Database.getInstance()) {
             var scanner = new Scanner(System.in);
             var printStream = System.out;
-            var restaurantService = RestaurantService.getInstance(
-                    database,
+            var daoContainer = DAOContainer.getInstance(
                     DAOBasicEvaluation.getInstance(),
                     DAOCity.getInstance(),
                     DAOCompleteEvaluation.getInstance(),
                     DAOEvaluationCriteria.getInstance(),
                     DAORestaurant.getInstance(),
                     DAORestaurantType.getInstance());
+            var restaurantService = RestaurantService.getInstance(database, daoContainer);
             var cli = new CLI(scanner, printStream, restaurantService);
             cli.start();
         }

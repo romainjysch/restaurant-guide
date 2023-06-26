@@ -75,7 +75,7 @@ public class Restaurant implements IAmRestaurant {
     @Column(name="SITE_WEB", length = 100)
     private String website;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "restaurant")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "restaurant", fetch = FetchType.EAGER)
     private Set<Evaluation> evaluations;
 
     @Embedded

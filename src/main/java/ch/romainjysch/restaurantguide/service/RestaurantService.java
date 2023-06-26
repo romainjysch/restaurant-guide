@@ -9,101 +9,73 @@ public class RestaurantService {
 
     private static RestaurantService instance;
     private final Database database;
-    private final DAOBasicEvaluation daoBasicEvaluation;
-    private final DAOCity daoCity;
-    private final DAOCompleteEvaluation daoCompleteEvaluation;
-    private final DAOEvaluationCriteria daoEvaluationCriteria;
-    private final DAORestaurant daoRestaurant;
-    private final DAORestaurantType daoRestaurantType;
+    private final DAOContainer daoContainer;
 
-    private RestaurantService(Database database,
-                              DAOBasicEvaluation daoBasicEvaluation,
-                              DAOCity daoCity,
-                              DAOCompleteEvaluation daoCompleteEvaluation,
-                              DAOEvaluationCriteria daoEvaluationCriteria,
-                              DAORestaurant daoRestaurant,
-                              DAORestaurantType daoRestaurantType) {
+    private RestaurantService(Database database, DAOContainer daoContainer) {
         this.database = database;
-        this.daoBasicEvaluation = daoBasicEvaluation;
-        this.daoCity = daoCity;
-        this.daoCompleteEvaluation = daoCompleteEvaluation;
-        this.daoEvaluationCriteria = daoEvaluationCriteria;
-        this.daoRestaurant = daoRestaurant;
-        this.daoRestaurantType = daoRestaurantType;
+        this.daoContainer = daoContainer;
     }
 
-    public static RestaurantService getInstance(Database database,
-                                                DAOBasicEvaluation daoBasicEvaluation,
-                                                DAOCity daoCity,
-                                                DAOCompleteEvaluation daoCompleteEvaluation,
-                                                DAOEvaluationCriteria daoEvaluationCriteria,
-                                                DAORestaurant daoRestaurant,
-                                                DAORestaurantType daoRestaurantType) {
+    public static RestaurantService getInstance(Database database, DAOContainer daoContainer) {
         if (instance == null)
-            instance = new RestaurantService(database,
-                    daoBasicEvaluation,
-                    daoCity,
-                    daoCompleteEvaluation,
-                    daoEvaluationCriteria,
-                    daoRestaurant,
-                    daoRestaurantType);
+            instance = new RestaurantService(database, daoContainer);
         return instance;
     }
 
     public Set<RestaurantOverview> researchAllRestaurants() {
-        return database.inTransaction(daoRestaurant::findAll);
+        return database.inTransaction(daoContainer.daoRestaurant::findAll);
     }
 
     public Restaurant researchRestaurantById(int id) {
-        return database.inTransaction(() -> daoRestaurant.findById(id));
+        return database.inTransaction(() -> daoContainer.daoRestaurant.findById(id));
     }
 
     public Set<RestaurantOverview> researchRestaurantsByName(String name) {
-        return database.inTransaction(() -> daoRestaurant.findByName(name));
+        return database.inTransaction(() -> daoContainer.daoRestaurant.findByName(name));
     }
 
     public Set<RestaurantOverview> researchRestaurantsByCityName(String name) {
-        return database.inTransaction(() -> daoRestaurant.findByCityName(name));
+        return database.inTransaction(() -> daoContainer.daoRestaurant.findByCityName(name));
     }
 
     public Set<RestaurantOverview> researchRestaurantsByType(RestaurantType restaurantType) {
-        return database.inTransaction(() -> daoRestaurant.findByRestaurantType(restaurantType));
+        return database.inTransaction(() -> daoContainer.daoRestaurant.findByRestaurantType(restaurantType));
     }
 
     public Set<RestaurantType> researchAllRestaurantTypes() {
-        return database.inTransaction(daoRestaurantType::findAll);
+        return database.inTransaction(daoContainer.daoRestaurantType::findAll);
     }
 
     public Set<City> researchAllCities() {
-        return database.inTransaction(daoCity::findAll);
+        return database.inTransaction(daoContainer.daoCity::findAll);
     }
 
     public Set<EvaluationCriteria> researchAllEvaluationCriteria() {
-        return database.inTransaction(daoEvaluationCriteria::findAll);
+        return database.inTransaction(daoContainer.daoEvaluationCriteria::findAll);
     }
 
     public void insertCity(City city) {
-        database.inTransaction(() -> daoCity.insert(city));
+        database.inTransaction(() -> daoContainer.daoCity.insert(city));
     }
 
     public void insertBasicEvaluation(BasicEvaluation basicEvaluation) {
-        database.inTransaction(() -> daoBasicEvaluation.insert(basicEvaluation));
+        database.inTransaction(() -> daoContainer.daoBasicEvaluation.insert(basicEvaluation));
     }
 
     public void insertCompleteEvaluation(CompleteEvaluation completeEvaluation) {
-        database.inTransaction(() -> daoCompleteEvaluation.insert(completeEvaluation));
+        database.inTransaction(() -> daoContainer.daoCompleteEvaluation.insert(completeEvaluation));
     }
 
     public void insertRestaurant(Restaurant restaurant) {
-        database.inTransaction(() -> daoRestaurant.insert(restaurant));
+        database.inTransaction(() -> daoContainer.daoRestaurant.insert(restaurant));
     }
 
     public void updateRestaurant(Restaurant restaurant) {
-        database.inTransaction(() -> daoRestaurant.update(restaurant));
+        database.inTransaction(() -> daoContainer.daoRestaurant.update(restaurant));
     }
 
     public void deleteRestaurant(Restaurant restaurant) {
-        database.inTransaction(() -> daoRestaurant.delete(restaurant));
+        database.inTransaction(() -> daoContainer.daoRestaurant.delete(restaurant));
     }
 
 }

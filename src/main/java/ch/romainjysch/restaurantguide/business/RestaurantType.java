@@ -28,7 +28,7 @@ public class RestaurantType {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "restaurantType")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "restaurantType", fetch = FetchType.EAGER)
     private Set<Restaurant> restaurants;
 
     public RestaurantType() {}
