@@ -18,14 +18,14 @@ public abstract class Evaluation {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_EVAL")
     @SequenceGenerator(name = "SEQ_EVAL", sequenceName = "SEQ_EVAL", initialValue = 1, allocationSize = 1)
-    @Column(name="NUMERO", nullable = false, length = 10)
+    @Column(name="numero", nullable = false, length = 10)
     private Integer id;
 
-    @Column(name = "DATE_EVAL", nullable = false)
+    @Column(name = "date_eval", nullable = false)
     private LocalDate visitDate;
 
     @ManyToOne
-    @JoinColumn(name = "FK_REST")
+    @JoinColumn(name = "fk_rest")
     private Restaurant restaurant;
 
     public Evaluation() {}

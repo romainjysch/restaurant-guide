@@ -16,10 +16,11 @@ import java.util.Set;
 @Table(name = "COMMENTAIRES")
 public class CompleteEvaluation extends Evaluation {
 
-    @Column(name = "COMMENTAIRE", nullable = false)
+    @Column(name = "commentaire", nullable = false)
+    @Lob
     private String comment;
 
-    @Column(name = "NOM_UTILISATEUR", nullable = false, length = 100)
+    @Column(name = "nom_utilisateur", nullable = false, length = 100)
     private String username;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "completeEvaluation", fetch = FetchType.EAGER)

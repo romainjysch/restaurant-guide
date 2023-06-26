@@ -20,13 +20,13 @@ public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_VILLES")
     @SequenceGenerator(name = "SEQ_VILLES", sequenceName = "SEQ_VILLES", allocationSize = 1)
-    @Column(name="NUMERO", nullable = false, length = 10)
+    @Column(name="numero", nullable = false, length = 10)
     private Integer id;
 
-    @Column(name="CODE_POSTAL")
+    @Column(name="code_postal", nullable = false, length = 100)
     private String zipCode;
 
-    @Column(name="NOM_VILLE")
+    @Column(name="nom_ville", nullable = false, length = 100)
     private String cityName;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "address.city", fetch = FetchType.EAGER)

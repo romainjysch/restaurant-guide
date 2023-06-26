@@ -19,13 +19,14 @@ public class RestaurantType {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_TYPES_GASTRONOMIQUES")
     @SequenceGenerator(name = "SEQ_TYPES_GASTRONOMIQUES", sequenceName = "SEQ_TYPES_GASTRONOMIQUES", allocationSize = 1)
-    @Column(name="NUMERO", nullable = false)
+    @Column(name="numero", nullable = false, length = 10)
     private Integer id;
 
     @Column(name = "libelle", unique = true, nullable = false, length = 100)
     private String label;
 
     @Column(name = "description", nullable = false)
+    @Lob
     private String description;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "restaurantType", fetch = FetchType.EAGER)

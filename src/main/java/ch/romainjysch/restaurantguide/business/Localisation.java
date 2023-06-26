@@ -20,7 +20,7 @@ public class Localisation {
     private String street;
 
     @ManyToOne
-    @JoinColumn(name = "FK_VILL", nullable = false)
+    @JoinColumn(name = "fk_vill", nullable = false)
     private City city;
 
     public Localisation() {}

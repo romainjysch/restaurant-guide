@@ -18,11 +18,11 @@ import java.time.LocalDate;
 @Table(name = "LIKES")
 public class BasicEvaluation extends Evaluation {
 
-    @Column(name = "APPRECIATION", nullable = false, length = 1)
+    @Column(name = "appreciation", nullable = false, length = 1)
     @Convert(converter = BooleanConverter.class)
     private boolean likeRestaurant;
 
-    @Column(name = "ADRESSE_IP", nullable = false, length = 100)
+    @Column(name = "adresse_ip", nullable = false, length = 100)
     private String ipAddress;
 
     public BasicEvaluation() {}

@@ -63,16 +63,17 @@ public class Restaurant implements IAmRestaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_RESTAURANTS")
     @SequenceGenerator(name = "SEQ_RESTAURANTS", sequenceName = "SEQ_RESTAURANTS", allocationSize = 1)
-    @Column(name="NUMERO", nullable = false)
+    @Column(name="numero", nullable = false, length = 10)
     private Integer id;
 
-    @Column(name = "NOM", nullable = false, length = 100)
+    @Column(name = "nom", nullable = false, length = 100)
     private String name;
 
-    @Column(name="DESCRIPTION")
+    @Column(name="description")
+    @Lob
     private String description;
 
-    @Column(name="SITE_WEB", length = 100)
+    @Column(name="site_web", length = 100)
     private String website;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "restaurant", fetch = FetchType.EAGER)
@@ -82,7 +83,7 @@ public class Restaurant implements IAmRestaurant {
     private Localisation address;
 
     @ManyToOne
-    @JoinColumn(name = "FK_TYPE")
+    @JoinColumn(name = "fk_type", nullable = false)
     private RestaurantType restaurantType;
 
     public Restaurant() {}
