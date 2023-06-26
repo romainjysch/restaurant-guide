@@ -6,11 +6,11 @@
              version="2.1">
     <persistence-unit name="guideRestoPersistenceUnit">
         <properties>
-            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>
-            <property name="javax.persistence.jdbc.user" value="romainjysch"/>
-            <property name="javax.persistence.jdbc.password" value="romainjysch"/>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@db.ig.he-arc.ch:1521:ens"/>
+            <property name="javax.persistence.jdbc.user" value="romain_jysch"/>
+            <property name="javax.persistence.jdbc.password" value="romain_jysch"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.generate_statistics" value="true"/>
         </properties>

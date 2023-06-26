@@ -1,28 +1,22 @@
 package ch.romainjysch.restaurantguide.business;
 
-import lombok.Setter;
-import lombok.Getter;
-import lombok.ToString;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-@Setter
-@Getter
-@ToString
 @Entity
 @Table(name = "COMMENTAIRES")
 public class CompleteEvaluation extends Evaluation {
 
-    @Column(name = "COMMENTAIRE", nullable = false)
+    @Column(name = "commentaire", nullable = false)
+    @Lob
     private String comment;
 
-    @Column(name = "NOM_UTILISATEUR", nullable = false, length = 100)
+    @Column(name = "nom_utilisateur", nullable = false, length = 100)
     private String username;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "completeEvaluation", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "completeEvaluation")
     private Set<Grade> grades;
 
     public CompleteEvaluation() {}
@@ -33,6 +27,18 @@ public class CompleteEvaluation extends Evaluation {
         this.comment = comment;
         this.username = username;
         this.grades = new HashSet<>();
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public Set<Grade> getGrades() {
+        return grades;
     }
 
     public void addGrade(Grade grade) {

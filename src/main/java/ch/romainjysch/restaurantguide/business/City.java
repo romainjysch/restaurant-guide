@@ -1,17 +1,10 @@
 package ch.romainjysch.restaurantguide.business;
 
-import lombok.Setter;
-import lombok.Getter;
-import lombok.ToString;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Setter
-@Getter
-@ToString
 @Entity
 @Table(name = "VILLES")
 @NamedQuery(name = "City.researchAll", query = "select c from City c")
@@ -20,16 +13,16 @@ public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_VILLES")
     @SequenceGenerator(name = "SEQ_VILLES", sequenceName = "SEQ_VILLES", allocationSize = 1)
-    @Column(name="NUMERO", nullable = false, length = 10)
+    @Column(name="numero", nullable = false, length = 10)
     private Integer id;
 
-    @Column(name="CODE_POSTAL")
+    @Column(name="code_postal", nullable = false, length = 100)
     private String zipCode;
 
-    @Column(name="NOM_VILLE")
+    @Column(name="nom_ville", nullable = false, length = 100)
     private String cityName;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "address.city", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "address.city")
     private Set<Restaurant> restaurants;
 
     public City() {}
@@ -48,6 +41,18 @@ public class City {
     public void removeRestaurant(Restaurant restaurant) {
         this.restaurants.remove(restaurant);
         restaurant.getAddress().setCity(null);
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public Set<Restaurant> getRestaurants() {
+        return restaurants;
     }
 
     @Override
