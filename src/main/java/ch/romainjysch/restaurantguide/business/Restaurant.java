@@ -1,15 +1,10 @@
 package ch.romainjysch.restaurantguide.business;
 
-import lombok.Setter;
-import lombok.Getter;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Setter
-@Getter
 @Entity
 @Table(name = "RESTAURANTS")
 @NamedQueries({
@@ -119,6 +114,46 @@ public class Restaurant implements IAmRestaurant {
     public void addEvaluation(Evaluation evaluation) {
         this.getEvaluations().add(evaluation);
         evaluation.setRestaurant(this);
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public Set<Evaluation> getEvaluations() {
+        return evaluations;
+    }
+
+    public Localisation getAddress() {
+        return address;
+    }
+
+    public RestaurantType getRestaurantType() {
+        return restaurantType;
+    }
+
+    public void setRestaurantType(RestaurantType restaurantType) {
+        this.restaurantType = restaurantType;
     }
 
     @Override

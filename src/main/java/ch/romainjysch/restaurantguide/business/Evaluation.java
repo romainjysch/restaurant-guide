@@ -1,14 +1,9 @@
 package ch.romainjysch.restaurantguide.business;
 
-import lombok.Setter;
-import lombok.Getter;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
-@Setter
-@Getter
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Evaluation {
@@ -31,6 +26,14 @@ public abstract class Evaluation {
     public Evaluation(Integer id, LocalDate visitDate, Restaurant restaurant) {
         this.id = id;
         this.visitDate = visitDate;
+        this.restaurant = restaurant;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
 

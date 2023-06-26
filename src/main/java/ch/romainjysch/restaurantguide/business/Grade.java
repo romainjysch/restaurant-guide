@@ -1,13 +1,8 @@
 package ch.romainjysch.restaurantguide.business;
 
-import lombok.Setter;
-import lombok.Getter;
-
 import javax.persistence.*;
 import java.util.Objects;
 
-@Setter
-@Getter
 @Entity
 @Table(name = "NOTES")
 public class Grade {
@@ -37,6 +32,18 @@ public class Grade {
         this.note = note;
         this.completeEvaluation = completeEvaluation;
         this.evaluationCriteria = evaluationCriteria;
+    }
+
+    public Integer getNote() {
+        return note;
+    }
+
+    public void setCompleteEvaluation(CompleteEvaluation completeEvaluation) {
+        this.completeEvaluation = completeEvaluation;
+    }
+
+    public EvaluationCriteria getEvaluationCriteria() {
+        return evaluationCriteria;
     }
 
     @Override

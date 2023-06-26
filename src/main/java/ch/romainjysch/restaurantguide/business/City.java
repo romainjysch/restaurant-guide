@@ -1,15 +1,10 @@
 package ch.romainjysch.restaurantguide.business;
 
-import lombok.Setter;
-import lombok.Getter;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Setter
-@Getter
 @Entity
 @Table(name = "VILLES")
 @NamedQuery(name = "City.researchAll", query = "select c from City c")
@@ -46,6 +41,18 @@ public class City {
     public void removeRestaurant(Restaurant restaurant) {
         this.restaurants.remove(restaurant);
         restaurant.getAddress().setCity(null);
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public Set<Restaurant> getRestaurants() {
+        return restaurants;
     }
 
     @Override

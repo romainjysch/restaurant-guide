@@ -1,13 +1,8 @@
 package ch.romainjysch.restaurantguide.business;
 
-import lombok.Setter;
-import lombok.Getter;
-
 import javax.persistence.*;
 import java.util.Objects;
 
-@Setter
-@Getter
 @Entity
 @Table(name = "CRITERES_EVALUATION")
 @NamedQuery(name = "EvaluationCriteria.researchAll", query = "select ec from EvaluationCriteria ec")
@@ -24,6 +19,14 @@ public class EvaluationCriteria {
 
     @Column(name = "description", length = 512)
     private String description;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 
     @Override
     public boolean equals(Object o) {

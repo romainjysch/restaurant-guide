@@ -1,15 +1,10 @@
 package ch.romainjysch.restaurantguide.business;
 
-import lombok.Setter;
-import lombok.Getter;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-@Setter
-@Getter
 @Entity
 @Table(name = "COMMENTAIRES")
 public class CompleteEvaluation extends Evaluation {
@@ -32,6 +27,18 @@ public class CompleteEvaluation extends Evaluation {
         this.comment = comment;
         this.username = username;
         this.grades = new HashSet<>();
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public Set<Grade> getGrades() {
+        return grades;
     }
 
     public void addGrade(Grade grade) {

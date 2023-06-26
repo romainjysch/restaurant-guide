@@ -1,14 +1,9 @@
 package ch.romainjysch.restaurantguide.business;
 
-import lombok.Setter;
-import lombok.Getter;
-
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
 
-@Setter
-@Getter
 @Entity
 @Table(name = "TYPES_GASTRONOMIQUES")
 @NamedQuery(name = "RestaurantType.researchAll", query = "select rt from RestaurantType rt")
@@ -35,6 +30,18 @@ public class RestaurantType {
     public void addRestaurant(Restaurant restaurant) {
         this.getRestaurants().add(restaurant);
         restaurant.setRestaurantType(this);
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Set<Restaurant> getRestaurants() {
+        return restaurants;
     }
 
     @Override

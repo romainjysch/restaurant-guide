@@ -1,8 +1,6 @@
 package ch.romainjysch.restaurantguide.business;
 
 import ch.romainjysch.restaurantguide.persistence.BooleanConverter;
-import lombok.Setter;
-import lombok.Getter;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
@@ -10,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.time.LocalDate;
 
-@Setter
-@Getter
 @Entity
 @Table(name = "LIKES")
 public class BasicEvaluation extends Evaluation {
@@ -33,6 +29,10 @@ public class BasicEvaluation extends Evaluation {
         super(id, visitDate, restaurant);
         this.likeRestaurant = likeRestaurant;
         this.ipAddress = ipAddress;
+    }
+
+    public boolean isLikeRestaurant() {
+        return likeRestaurant;
     }
 
 }
