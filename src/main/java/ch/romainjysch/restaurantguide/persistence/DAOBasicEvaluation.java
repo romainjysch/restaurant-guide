@@ -6,15 +6,7 @@ import static ch.romainjysch.restaurantguide.persistence.Database.getEntityManag
 
 public class DAOBasicEvaluation {
 
-    private static DAOBasicEvaluation instance;
-
-    private DAOBasicEvaluation() {}
-
-    public static DAOBasicEvaluation getInstance() {
-        if (instance == null)
-            return new DAOBasicEvaluation();
-        return instance;
-    }
+    public DAOBasicEvaluation() {}
 
     public void insert(BasicEvaluation basicEvaluation) {
         getEntityManager().persist(basicEvaluation);

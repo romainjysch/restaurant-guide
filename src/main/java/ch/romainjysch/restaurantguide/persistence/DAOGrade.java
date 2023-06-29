@@ -6,15 +6,7 @@ import static ch.romainjysch.restaurantguide.persistence.Database.getEntityManag
 
 public class DAOGrade {
 
-    private static DAOGrade instance;
-
-    private DAOGrade() {}
-
-    public static DAOGrade getInstance() {
-        if (instance == null)
-            instance = new DAOGrade();
-        return instance;
-    }
+    public DAOGrade() {}
 
     public void delete(Grade grade) {
         Grade merged = getEntityManager().merge(grade);

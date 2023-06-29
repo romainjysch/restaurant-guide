@@ -9,15 +9,7 @@ import static ch.romainjysch.restaurantguide.persistence.Database.getEntityManag
 
 public class DAOCity {
 
-    private static DAOCity instance;
-
-    private DAOCity() {}
-
-    public static DAOCity getInstance() {
-        if (instance == null)
-            instance = new DAOCity();
-        return instance;
-    }
+    public DAOCity() {}
 
     public Set<City> findAll() {
         Set<City> cities = getEntityManager().createNamedQuery("City.researchAll", City.class)

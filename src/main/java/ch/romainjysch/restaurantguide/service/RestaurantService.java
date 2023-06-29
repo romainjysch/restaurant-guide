@@ -7,19 +7,12 @@ import java.util.Set;
 
 public class RestaurantService {
 
-    private static RestaurantService instance;
     private final Database database;
     private final DAOContainer daoContainer;
 
-    private RestaurantService(Database database, DAOContainer daoContainer) {
+    public RestaurantService(Database database, DAOContainer daoContainer) {
         this.database = database;
         this.daoContainer = daoContainer;
-    }
-
-    public static RestaurantService getInstance(Database database, DAOContainer daoContainer) {
-        if (instance == null)
-            instance = new RestaurantService(database, daoContainer);
-        return instance;
     }
 
     public Set<RestaurantOverview> researchAllRestaurants() {

@@ -9,15 +9,7 @@ import static ch.romainjysch.restaurantguide.persistence.Database.getEntityManag
 
 public class DAORestaurantType {
 
-    private static DAORestaurantType instance;
-
-    private DAORestaurantType() {}
-
-    public static DAORestaurantType getInstance() {
-        if (instance == null)
-            instance = new DAORestaurantType();
-        return instance;
-    }
+    public DAORestaurantType() {}
 
     public Set<RestaurantType> findAll() {
         return getEntityManager()

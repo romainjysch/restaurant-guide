@@ -6,15 +6,7 @@ import static ch.romainjysch.restaurantguide.persistence.Database.getEntityManag
 
 public class DAOCompleteEvaluation {
 
-    private static DAOCompleteEvaluation instance;
-
-    private DAOCompleteEvaluation() {}
-
-    public static DAOCompleteEvaluation getInstance() {
-        if (instance == null)
-            instance = new DAOCompleteEvaluation();
-        return instance;
-    }
+    public DAOCompleteEvaluation() {}
 
     public void insert(CompleteEvaluation completeEvaluation) {
         getEntityManager().persist(completeEvaluation);

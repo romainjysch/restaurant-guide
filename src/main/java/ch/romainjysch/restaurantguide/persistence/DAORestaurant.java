@@ -14,19 +14,12 @@ import static ch.romainjysch.restaurantguide.persistence.Database.getEntityManag
 
 public class DAORestaurant {
 
-    private static DAORestaurant instance;
     private final static Function<TypedQuery<Restaurant>, Set<RestaurantOverview>> getSetRestaurantOverview = x -> x
             .getResultStream()
             .map(RestaurantToRestaurantOverview::convert)
             .collect(Collectors.toUnmodifiableSet());
 
-    private DAORestaurant() {}
-
-    public static DAORestaurant getInstance() {
-        if (instance == null)
-            instance = new DAORestaurant();
-        return instance;
-    }
+    public DAORestaurant() {}
 
     public Set<RestaurantOverview> findAll() {
         return getSetRestaurantOverview.apply(getEntityManager()
