@@ -8,49 +8,29 @@ import java.util.Set;
 @Entity
 @Table(name = "RESTAURANTS")
 @NamedQueries({
-        @NamedQuery(name = "Restaurant.researchAll",
+        @NamedQuery(
+                name = "Restaurant.researchAll",
+                query = "select res " +
+                        "from Restaurant res"),
+        @NamedQuery(
+                name = "Restaurant.researchById",
                 query = "select res " +
                         "from Restaurant res " +
-                        "left join fetch res.restaurantType typ " +
-                        "left join fetch res.address.city cit " +
-                        "left join fetch res.evaluations eva " +
-                        "left join fetch eva.grades gra " +
-                        "left join fetch gra.evaluationCriteria cri "),
-        @NamedQuery(name = "Restaurant.researchById",
-                query = "select res " +
-                        "from Restaurant res " +
-                        "left join fetch res.restaurantType typ " +
-                        "left join fetch res.address.city cit " +
-                        "left join fetch res.evaluations eva " +
-                        "left join fetch eva.grades gra " +
-                        "left join fetch gra.evaluationCriteria cri " +
                         "where res.id = :id"),
-        @NamedQuery(name = "Restaurant.researchByName",
+        @NamedQuery(
+                name = "Restaurant.researchByName",
                 query = "select res " +
                         "from Restaurant res " +
-                        "left join fetch res.restaurantType typ " +
-                        "left join fetch res.address.city cit " +
-                        "left join fetch res.evaluations eva " +
-                        "left join fetch eva.grades gra " +
-                        "left join fetch gra.evaluationCriteria cri " +
                         "where res.name like :name"),
-        @NamedQuery(name = "Restaurant.researchByCityName",
+        @NamedQuery(
+                name = "Restaurant.researchByCityName",
                 query = "select res " +
                         "from Restaurant res " +
-                        "left join fetch res.restaurantType typ " +
-                        "left join fetch res.address.city cit " +
-                        "left join fetch res.evaluations eva " +
-                        "left join fetch eva.grades gra " +
-                        "left join fetch gra.evaluationCriteria cri " +
                         "where res.address.city.cityName like :cityName"),
-        @NamedQuery(name = "Restaurant.researchByRestaurantType",
+        @NamedQuery(
+                name = "Restaurant.researchByRestaurantType",
                 query = "select res " +
                         "from Restaurant res " +
-                        "left join fetch res.restaurantType typ " +
-                        "left join fetch res.address.city cit " +
-                        "left join fetch res.evaluations eva " +
-                        "left join fetch eva.grades gra " +
-                        "left join fetch gra.evaluationCriteria cri " +
                         "where res.restaurantType = :restaurantType")
 })
 public class Restaurant implements IAmRestaurant {
@@ -71,7 +51,7 @@ public class Restaurant implements IAmRestaurant {
     @Column(name="site_web", length = 100)
     private String website;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "restaurant")
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
     private Set<Evaluation> evaluations;
 
     @Embedded

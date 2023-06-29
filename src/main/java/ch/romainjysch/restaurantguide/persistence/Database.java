@@ -37,8 +37,8 @@ public class Database implements AutoCloseable {
             logger.error("Exception : ", e);
             throw new RuntimeException(e);
         } finally {
-            //em.close();
-            //Database.em.remove();
+            em.close();
+            Database.em.remove();
         }
     }
 
@@ -53,8 +53,8 @@ public class Database implements AutoCloseable {
             logger.error("Exception : ", e);
             throw new RuntimeException(e);
         } finally {
-            //em.close();
-            //Database.em.remove();
+            em.close();
+            Database.em.remove();
         }
     }
 

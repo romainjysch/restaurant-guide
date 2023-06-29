@@ -21,6 +21,7 @@ public class Main {
                     DAOCity.getInstance(),
                     DAOCompleteEvaluation.getInstance(),
                     DAOEvaluationCriteria.getInstance(),
+                    DAOGrade.getInstance(),
                     DAORestaurant.getInstance(),
                     DAORestaurantType.getInstance());
             var restaurantService = RestaurantService.getInstance(database, daoContainer);
