@@ -1,6 +1,7 @@
 package ch.romainjysch.restaurantguide.business;
 
-import org.junit.jupiter.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,27 +19,27 @@ public class CityTestAddRestaurant {
 
     @Test
     void addRestaurant_GivenNewRestaurant_SizeShouldBe1() {
-        Assertions.assertEquals(1, city.getRestaurants().size());
+        assertThat(city.getRestaurants().size()).isEqualTo(1);
     }
 
     @Test
     void addRestaurant_GivenNewRestaurant_IdShouldBe1() {
-        Assertions.assertEquals(1, city.getRestaurants().iterator().next().getId());
+        assertThat(city.getRestaurants().iterator().next().getId()).isEqualTo(1);
     }
 
     @Test
     void addRestaurant_GivenNewRestaurant_NameShouldBeFleurDeLys() {
-        Assertions.assertEquals("Fleur-de-Lys", city.getRestaurants().iterator().next().getName());
+        assertThat(city.getRestaurants().iterator().next().getName()).isEqualTo("Fleur-de-Lys");
     }
 
     @Test
     void addRestaurant_GivenNewRestaurant_ZipCodeShouldBe2000() {
-        Assertions.assertEquals("2000", restaurant.getZipCode());
+        assertThat(restaurant.getZipCode()).isEqualTo("2000");
     }
 
     @Test
     void addRestaurant_GivenNewRestaurant_CityNameShouldBeNeuchatel() {
-        Assertions.assertEquals("Neuchâtel", restaurant.getCityName());
+        assertThat(restaurant.getCityName()).isEqualTo("Neuchâtel");
     }
 
 }

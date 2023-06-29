@@ -1,9 +1,8 @@
 package ch.romainjysch.restaurantguide.business;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,17 +20,17 @@ public class CityTestRemoveRestaurant {
 
     @Test
     void removeRestaurant_GivenRestaurant_SizeShouldBe0() {
-        assertThat(city.getRestaurants().size(), is(0));
+        assertThat(city.getRestaurants().size()).isEqualTo(0);
     }
 
     @Test
     void removeRestaurant_GivenRestaurant_ZipCodeShouldThrowNullPointerException() {
-        Assertions.assertThrows(NullPointerException.class, () -> restaurant.getZipCode());
+        assertThatThrownBy(() -> restaurant.getZipCode()).isInstanceOf(NullPointerException.class);
     }
 
     @Test
     void removeRestaurant_GivenRestaurant_CityNameShouldThrowNullPointerException() {
-        Assertions.assertThrows(NullPointerException.class, () -> restaurant.getCityName());
+        assertThatThrownBy(() -> restaurant.getCityName()).isInstanceOf(NullPointerException.class);
     }
 
 }
