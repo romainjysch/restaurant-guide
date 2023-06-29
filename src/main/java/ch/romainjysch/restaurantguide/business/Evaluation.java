@@ -29,6 +29,10 @@ public abstract class Evaluation {
         this.restaurant = restaurant;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     public Restaurant getRestaurant() {
         return restaurant;
     }
