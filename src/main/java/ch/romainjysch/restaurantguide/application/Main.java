@@ -1,10 +1,10 @@
 package ch.romainjysch.restaurantguide.application;
 
-import ch.romainjysch.restaurantguide.business.*;
-import ch.romainjysch.restaurantguide.persistence.Database;
-import ch.romainjysch.restaurantguide.utils.RestaurantToRestaurantOverview;
+import ch.romainjysch.restaurantguide.persistence.*;
+import ch.romainjysch.restaurantguide.presentation.CLI;
+import ch.romainjysch.restaurantguide.service.RestaurantService;
 
-import static ch.romainjysch.restaurantguide.persistence.Database.getEntityManager;
+import java.util.Scanner;
 
 public class Main {
 
@@ -13,20 +13,20 @@ public class Main {
     }
 
     private static void cli() {
-        try (var database = Database.getInstance()) {
-            database.inTransaction(() -> {
-                Restaurant restaurant = getEntityManager().find(Restaurant.class, 1);
-                RestaurantOverview restaurantOverview = RestaurantToRestaurantOverview.convert(restaurant);
-                System.out.println(restaurantOverview);
-            });
-            database.inTransaction(() -> {
-                City city = getEntityManager().find(City.class, 1);
-                System.out.println(city);
-            });
-            database.inTransaction(() -> {
-                RestaurantType restaurantType = getEntityManager().find(RestaurantType.class, 1);
-                System.out.println(restaurantType);
-            });
+        try (var database = new Database()) {
+            var scanner = new Scanner(System.in);
+            var printStream = System.out;
+            var daoContainer = new DAOContainer(
+                    new DAOBasicEvaluation(),
+                    new DAOCity(),
+                    new DAOCompleteEvaluation(),
+                    new DAOEvaluationCriteria(),
+                    new DAOGrade(),
+                    new DAORestaurant(),
+                    new DAORestaurantType());
+            var restaurantService = new RestaurantService(database, daoContainer);
+            var cli = new CLI(scanner, printStream, restaurantService);
+            cli.start();
         }
     }
 

@@ -1,30 +1,32 @@
 package ch.romainjysch.restaurantguide.business;
 
-import lombok.Setter;
-import lombok.Getter;
-import lombok.ToString;
-
 import javax.persistence.*;
 import java.util.Objects;
 
-@Setter
-@Getter
-@ToString
 @Entity
 @Table(name = "CRITERES_EVALUATION")
+@NamedQuery(name = "EvaluationCriteria.researchAll", query = "select ec from EvaluationCriteria ec")
 public class EvaluationCriteria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_CRITERES_EVALUATION")
     @SequenceGenerator(name = "SEQ_CRITERES_EVALUATION", sequenceName = "SEQ_CRITERES_EVALUATION", allocationSize = 1)
-    @Column(name="NUMERO", nullable = false)
+    @Column(name="numero", nullable = false, length = 10)
     private Integer id;
 
-    @Column(name = "NOM", unique = true, nullable = false, length = 100)
+    @Column(name = "nom", unique = true, nullable = false, length = 100)
     private String name;
 
-    @Column(name = "DESCRIPTION", length = 512)
+    @Column(name = "description", length = 512)
     private String description;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 
     @Override
     public boolean equals(Object o) {

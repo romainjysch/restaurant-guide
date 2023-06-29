@@ -1,20 +1,6 @@
 package ch.romainjysch.restaurantguide.business;
 
-public class RestaurantOverview  implements IAmRestaurant {
-
-    private final Integer id;
-    private final String name;
-    private final String street;
-    private final String zipCode;
-    private final String cityName;
-
-    public RestaurantOverview(Integer id, String name, String street, String zipCode, String cityName) {
-        this.id = id;
-        this.name = name;
-        this.street = street;
-        this.cityName = cityName;
-        this.zipCode = zipCode;
-    }
+public record RestaurantOverview(Integer id, String name, String street, String zipCode, String cityName) implements IAmRestaurant {
 
     public Integer getId() {
         return id;
@@ -26,13 +12,13 @@ public class RestaurantOverview  implements IAmRestaurant {
     }
 
     @Override
-    public String getZipCode() {
-        return zipCode;
+    public String getStreet() {
+        return street;
     }
 
     @Override
-    public String getStreet() {
-        return street;
+    public String getZipCode() {
+        return zipCode;
     }
 
     @Override

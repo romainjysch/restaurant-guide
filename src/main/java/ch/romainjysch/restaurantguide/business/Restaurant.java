@@ -1,45 +1,78 @@
 package ch.romainjysch.restaurantguide.business;
 
-import ch.romainjysch.restaurantguide.utils.RestaurantToRestaurantOverview;
-import lombok.Setter;
-import lombok.Getter;
-
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Setter
-@Getter
 @Entity
 @Table(name = "RESTAURANTS")
+@NamedQueries({
+        @NamedQuery(
+                name = "Restaurant.researchAll",
+                query = "select res " +
+                        "from Restaurant res"),
+        @NamedQuery(
+                name = "Restaurant.researchById",
+                query = "select res " +
+                        "from Restaurant res " +
+                        "where res.id = :id"),
+        @NamedQuery(
+                name = "Restaurant.researchByName",
+                query = "select res " +
+                        "from Restaurant res " +
+                        "where res.name like :name"),
+        @NamedQuery(
+                name = "Restaurant.researchByCityName",
+                query = "select res " +
+                        "from Restaurant res " +
+                        "where res.address.city.cityName like :cityName"),
+        @NamedQuery(
+                name = "Restaurant.researchByRestaurantType",
+                query = "select res " +
+                        "from Restaurant res " +
+                        "where res.restaurantType = :restaurantType")
+})
 public class Restaurant implements IAmRestaurant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_RESTAURANTS")
     @SequenceGenerator(name = "SEQ_RESTAURANTS", sequenceName = "SEQ_RESTAURANTS", allocationSize = 1)
-    @Column(name="NUMERO", nullable = false)
+    @Column(name="numero", nullable = false, length = 10)
     private Integer id;
 
-    @Column(name = "NOM", nullable = false, length = 100)
+    @Column(name = "nom", nullable = false, length = 100)
     private String name;
 
-    @Column(name="DESCRIPTION")
+    @Column(name="description")
+    @Lob
     private String description;
 
-    @Column(name="SITE_WEB", length = 100)
+    @Column(name="site_web", length = 100)
     private String website;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "restaurant")
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
     private Set<Evaluation> evaluations;
 
     @Embedded
     private Localisation address;
 
     @ManyToOne
-    @JoinColumn(name = "FK_TYPE")
+    @JoinColumn(name = "fk_type", nullable = false)
     private RestaurantType restaurantType;
 
     public Restaurant() {}
+
+    public Restaurant(Integer id, String name, String description, String website, String street,
+                      City city, RestaurantType restaurantType) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.website = website;
+        this.evaluations = new HashSet<>();
+        this.address = new Localisation(street, city);
+        this.restaurantType = restaurantType;
+    }
 
     @Override
     public String getName() {
@@ -63,6 +96,46 @@ public class Restaurant implements IAmRestaurant {
         evaluation.setRestaurant(this);
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public Set<Evaluation> getEvaluations() {
+        return evaluations;
+    }
+
+    public Localisation getAddress() {
+        return address;
+    }
+
+    public RestaurantType getRestaurantType() {
+        return restaurantType;
+    }
+
+    public void setRestaurantType(RestaurantType restaurantType) {
+        this.restaurantType = restaurantType;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -74,11 +147,6 @@ public class Restaurant implements IAmRestaurant {
     @Override
     public int hashCode() {
         return 42;
-    }
-
-    @Override
-    public String toString() {
-        return RestaurantToRestaurantOverview.convert(this).toString();
     }
 
 }
