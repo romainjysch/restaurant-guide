@@ -19,17 +19,17 @@ public class CityTestRemoveRestaurant {
     }
 
     @Test
-    void removeRestaurant_GivenRestaurant_SizeShouldBe0() {
+    void removeRestaurant_GivenRestaurant_CityRestaurantsSizeShouldBe0() {
         assertThat(city.getRestaurants().size()).isEqualTo(0);
     }
 
     @Test
-    void removeRestaurant_GivenRestaurant_ZipCodeShouldThrowNullPointerException() {
+    void removeRestaurant_GivenRestaurant_RestaurantZipCodeShouldThrowNullPointerException() {
         assertThatThrownBy(() -> restaurant.getZipCode()).isInstanceOf(NullPointerException.class);
     }
 
     @Test
-    void removeRestaurant_GivenRestaurant_CityNameShouldThrowNullPointerException() {
+    void removeRestaurant_GivenRestaurant_RestaurantCityNameShouldThrowNullPointerException() {
         assertThatThrownBy(() -> restaurant.getCityName()).isInstanceOf(NullPointerException.class);
     }
 

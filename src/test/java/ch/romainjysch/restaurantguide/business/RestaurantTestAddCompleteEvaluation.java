@@ -20,32 +20,32 @@ public class RestaurantTestAddCompleteEvaluation {
     }
 
     @Test
-    void addEvaluation_GivenNewCompleteEvaluation_RestaurantEvaluationsSizeShouldBe1() {
+    void addEvaluation_GivenCompleteEvaluation_RestaurantEvaluationsSizeShouldBe1() {
         assertThat(restaurant.getEvaluations().size()).isEqualTo(1);
     }
 
     @Test
-    void addEvaluation_GivenNewCompleteEvaluation_RestaurantFirstEvaluationIdShouldBe2() {
+    void addEvaluation_GivenCompleteEvaluation_RestaurantFirstEvaluationIdShouldBe2() {
         assertThat(restaurant.getEvaluations().stream().findFirst().get().getId()).isEqualTo(2);
     }
 
     @Test
-    void addEvaluation_GivenNewCompleteEvaluation_RestaurantFirstEvaluationInstanceShouldBeCompleteEvaluationClass() {
+    void addEvaluation_GivenCompleteEvaluation_RestaurantFirstEvaluationInstanceShouldBeCompleteEvaluationClass() {
         assertThat(restaurant.getEvaluations().stream().findFirst().get()).isInstanceOf(CompleteEvaluation.class);
     }
 
     @Test
-    void addEvaluation_GivenNewCompleteEvaluation_RestaurFirstCompleteEvaluationCommentShouldBeTop() {
+    void addEvaluation_GivenCompleteEvaluation_RestaurFirstCompleteEvaluationCommentShouldBeTop() {
         assertThat(restaurant.getEvaluations().stream().map(CompleteEvaluation.class::cast).findFirst().get().getComment()).isEqualTo("Top");
     }
 
     @Test
-    void addEvaluation_GivenNewCompleteEvaluation_EvaluationRestaurantIdShouldBe1() {
+    void addEvaluation_GivenCompleteEvaluation_EvaluationRestaurantIdShouldBe1() {
         assertThat(completeEvaluation.getRestaurant().getId()).isEqualTo(1);
     }
 
     @Test
-    void addEvaluation_GivenNewCompleteEvaluation_EvaluationRestaurantNameShouldBeFleurDeLys() {
+    void addEvaluation_GivenCompleteEvaluation_EvaluationRestaurantNameShouldBeFleurDeLys() {
         assertThat(completeEvaluation.getRestaurant().getName()).isEqualTo("Fleur-de-Lys");
     }
 

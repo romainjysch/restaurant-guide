@@ -20,32 +20,32 @@ public class RestaurantTestAddBasicEvaluation {
     }
 
     @Test
-    void addEvaluation_GivenNewBasicEvaluation_RestaurantEvaluationsSizeShouldBe1() {
+    void addEvaluation_GivenBasicEvaluation_RestaurantEvaluationsSizeShouldBe1() {
         assertThat(restaurant.getEvaluations().size()).isEqualTo(1);
     }
 
     @Test
-    void addEvaluation_GivenNewBasicEvaluation_RestaurantFirstEvaluationIdShouldBe1() {
+    void addEvaluation_GivenBasicEvaluation_RestaurantFirstEvaluationIdShouldBe1() {
         assertThat(restaurant.getEvaluations().stream().findFirst().get().getId()).isEqualTo(1);
     }
 
     @Test
-    void addEvaluation_GivenNewBasicEvaluation_RestaurantFirstEvaluationInstanceShouldBeBasicEvaluationClass() {
+    void addEvaluation_GivenBasicEvaluation_RestaurantFirstEvaluationInstanceShouldBeBasicEvaluationClass() {
         assertThat(restaurant.getEvaluations().stream().findFirst().get()).isInstanceOf(BasicEvaluation.class);
     }
 
     @Test
-    void addEvaluation_GivenNewBasicEvaluation_RestaurantFirstBasicEvaluationLikeShouldBeTrue() {
+    void addEvaluation_GivenBasicEvaluation_RestaurantFirstBasicEvaluationLikeShouldBeTrue() {
         assertThat(restaurant.getEvaluations().stream().map(BasicEvaluation.class::cast).findFirst().get().isLikeRestaurant()).isEqualTo(true);
     }
 
     @Test
-    void addEvaluation_GivenNewBasicEvaluation_EvaluationRestaurantIdShouldBe1() {
+    void addEvaluation_GivenBasicEvaluation_EvaluationRestaurantIdShouldBe1() {
         assertThat(basicEvaluation.getRestaurant().getId()).isEqualTo(1);
     }
 
     @Test
-    void addEvaluation_GivenNewBasicEvaluation_EvaluationRestaurantNameShouldBeFleurDeLys() {
+    void addEvaluation_GivenBasicEvaluation_EvaluationRestaurantNameShouldBeFleurDeLys() {
         assertThat(basicEvaluation.getRestaurant().getName()).isEqualTo("Fleur-de-Lys");
     }
 

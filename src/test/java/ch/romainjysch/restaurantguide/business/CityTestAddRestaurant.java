@@ -18,27 +18,27 @@ public class CityTestAddRestaurant {
     }
 
     @Test
-    void addRestaurant_GivenNewRestaurant_SizeShouldBe1() {
+    void addRestaurant_GivenRestaurant_CityRestaurantsSizeShouldBe1() {
         assertThat(city.getRestaurants().size()).isEqualTo(1);
     }
 
     @Test
-    void addRestaurant_GivenNewRestaurant_IdShouldBe1() {
-        assertThat(city.getRestaurants().iterator().next().getId()).isEqualTo(1);
+    void addRestaurant_GivenRestaurant_CityFirstRestaurantIdShouldBe1() {
+        assertThat(city.getRestaurants().stream().findFirst().get().getId()).isEqualTo(1);
     }
 
     @Test
-    void addRestaurant_GivenNewRestaurant_NameShouldBeFleurDeLys() {
-        assertThat(city.getRestaurants().iterator().next().getName()).isEqualTo("Fleur-de-Lys");
+    void addRestaurant_GivenRestaurant_CityFirstRestaurantNameShouldBeFleurDeLys() {
+        assertThat(city.getRestaurants().stream().findFirst().get().getName()).isEqualTo("Fleur-de-Lys");
     }
 
     @Test
-    void addRestaurant_GivenNewRestaurant_ZipCodeShouldBe2000() {
+    void addRestaurant_GivenRestaurant_RestaurantZipCodeShouldBe2000() {
         assertThat(restaurant.getZipCode()).isEqualTo("2000");
     }
 
     @Test
-    void addRestaurant_GivenNewRestaurant_CityNameShouldBeNeuchatel() {
+    void addRestaurant_GivenRestaurant_RestaurantCityNameShouldBeNeuchatel() {
         assertThat(restaurant.getCityName()).isEqualTo("Neuchâtel");
     }
 
